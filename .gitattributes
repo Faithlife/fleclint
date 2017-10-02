@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+*.cs text diff=csharp
+*.csproj text merge=union
+*.sln text eol=crlf merge=union
+yarn.lock text eol=crlf
+
+*.dll binary
+*.exe binary
+*.ico binary
+*.jpg binary
+*.png binary
+*.ttf binary
