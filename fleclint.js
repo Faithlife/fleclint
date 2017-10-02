@@ -32,7 +32,20 @@ function checkEditorConfig (directory) {
   //
   // we expect this script to be run from within node_modules so it references eclint from
   // its sibling node_modules folder
-  const eclintPath = `${__dirname}/../../eclint/bin/eclint.js`.replace(/\\/g, '/')
+  const eclintPath = (() => {
+    const npmPackagePath = `${__dirname}/../../eclint/bin/eclint.js`.replace(/\\/g, '/')
+    if (fs.existsSync(npmPackagePath)) {
+      return npmPackagePath
+    }
+
+    const localDevPath = `${__dirname}/node_modules/eclint/bin/eclint.js`.replace(/\\/g, '/')
+    if (fs.existsSync(localDevPath)) {
+      return localDevPath
+    }
+
+    console.error(`'eclint' is required but was not found in either of the expected locations ('${npmPackagePath}' or '${localDevPath}')`)
+    process.exit(-1)
+  })()
 
   const command = process.platform === 'win32'
     ? `"${gitBashPath}"`
