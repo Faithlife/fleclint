@@ -2,7 +2,8 @@ const { spawn } = require('child_process')
 const fs = require('fs')
 
 // Checks that the given directory (and its subfolders and files) matches its editorconfig
-function checkEditorConfig (directory) {
+// or fixes all files within the given directory tree to match its editorconfig
+function enforceEditorConfig (action, directory) {
   const gitBashPath = 'C:/Program Files/Git/bin/sh.exe'
 
   // ensure Git Bash is installed on Windows
@@ -52,8 +53,8 @@ function checkEditorConfig (directory) {
     : 'node'
 
   const args = process.platform === 'win32'
-    ? [ '"-c"', `"node ${eclintPath} check${eclintArgs}"` ]
-    : [ `"${eclintPath}"`, `check${eclintArgs}` ]
+    ? [ '"-c"', `"node ${eclintPath} ${action}${eclintArgs}"` ]
+    : [ `"${eclintPath}"`, `${action}${eclintArgs}` ]
 
   console.log(`Running eclint lint command:\n'${command} ${args.join(' ')}`)
   const eclintProcess = spawn(command, args, { shell: true })
@@ -77,11 +78,17 @@ function checkEditorConfig (directory) {
 }
 
 const args = process.argv.slice(2)
-if (args.length > 1) {
-  console.error.log('Usage: node fleclint.js <directory (optional: uses current directory if not provided)>')
+const action = args[0]
+if (args.length > 2 || (action !== 'check' && action !== 'fix')) {
+  console.error('Usage: node fleclint.js <action> <directory (optional)>')
+  console.error('  action')
+  console.error('    "check"  checks that the directory tree matches its EditorConfig settings')
+  console.error('    "fix"    fixes all files in the directory tree that do not match the EditorConfig settings')
+  console.error('  directory  the directory to run against-uses the current working directory if not specified')
+  process.exit(-1)
 }
 
 console.log('Running fleclint ...')
 
-const directory = args.length === 1 ? args[0] : process.cwd()
-checkEditorConfig(directory)
+const directory = args.length === 2 ? args[1] : process.cwd()
+enforceEditorConfig(action, directory)

@@ -11,6 +11,9 @@
 
 ## Usage
 
-`node fleclint.js <directory (optional)>`
+`node fleclint.js <action> <directory (optional)>`
 
+* `<action>` : the action to perform; this can be one of the following
+  * `check` : check all files in the given directory tree against its EditorConfig
+  * `fix` : fixes all files in the given directory tree that do not match its EditorConfig
 * `<directory>` : the directory to enforce EditorConfig settings in. If not provided, `fleclint` uses the current working directory.
