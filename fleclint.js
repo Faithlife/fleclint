@@ -29,7 +29,10 @@ function checkEditorConfig (directory) {
   }
 
   // construct Unix-style path to eclint.js that will work on Unix and in Git Bash on Windows
-  const eclintPath = `${__dirname}/node_modules/eclint/bin/eclint.js`.replace(/\\/g, '/')
+  //
+  // we expect this script to be run from within node_modules so it references eclint from
+  // its sibling node_modules folder
+  const eclintPath = `${__dirname}/../../eclint/bin/eclint.js`.replace(/\\/g, '/')
 
   const command = process.platform === 'win32'
     ? `"${gitBashPath}"`
