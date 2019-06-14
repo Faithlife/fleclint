@@ -5,7 +5,7 @@
 ## Platforms
 
 * Windows : Tested
-  * Requires x64 install of Git for Windows
+  * Requires an install of Git and the system path must contain the git folder (i.e. `C:\Program Files\Git\bin`)
 * Mac : Untested
 * Linux : Untested
 

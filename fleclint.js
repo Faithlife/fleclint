@@ -4,13 +4,7 @@ const fs = require('fs')
 // Checks that the given directory (and its subfolders and files) matches its editorconfig
 // or fixes all files within the given directory tree to match its editorconfig
 function enforceEditorConfig (action, directory) {
-  const gitBashPath = 'C:/Program Files/Git/bin/sh.exe'
-
-  // ensure Git Bash is installed on Windows
-  if (process.platform === 'win32' && !fs.existsSync(gitBashPath)) {
-    console.error(`When running on Windows, Git Bash is required (expected location: ${gitBashPath}).`)
-    process.exit(-1)
-  }
+  const gitBashPath = 'bash.exe';
 
   if (process.cwd() !== directory) {
     process.chdir(directory)
