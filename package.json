@@ -1,6 +1,6 @@
 {
   "name": "fleclint",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Enforces EditorConfig settings in a directory tree.",
   "main": "fleclint.js",
   "files": [

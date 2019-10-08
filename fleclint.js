@@ -26,7 +26,7 @@ function enforceEditorConfig (action, directory) {
   // we expect this script to be run from within node_modules so it references eclint from
   // its sibling node_modules folder
   const eclintPath = (() => {
-    const npmPackagePath = `${__dirname}/../../eclint/bin/eclint.js`.replace(/\\/g, '/')
+    const npmPackagePath = `${__dirname}/../eclint/bin/eclint.js`.replace(/\\/g, '/')
     if (fs.existsSync(npmPackagePath)) {
       return npmPackagePath
     }
