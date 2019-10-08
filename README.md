@@ -5,7 +5,7 @@
 ## Platforms
 
 * Windows : Tested
-  * Requires an install of Git and the system path must contain the git folder (i.e. `C:\Program Files\Git\bin`)
+  * Requires `bash.exe` to be in the `PATH` (e.g. install 64-bit Git and add `C:\Program Files\Git\bin` to the `PATH`)
 * Mac : Untested
 * Linux : Untested
 
@@ -17,3 +17,7 @@
   * `check` : check all files in the given directory tree against its EditorConfig
   * `fix` : fixes all files in the given directory tree that do not match its EditorConfig
 * `<directory>` : the directory to enforce EditorConfig settings in. If not provided, `fleclint` uses the current working directory.
+
+## License
+
+`fleclint` is licensed under the [MIT License](LICENSE.md).

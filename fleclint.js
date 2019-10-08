@@ -4,8 +4,6 @@ const fs = require('fs')
 // Checks that the given directory (and its subfolders and files) matches its editorconfig
 // or fixes all files within the given directory tree to match its editorconfig
 function enforceEditorConfig (action, directory) {
-  const gitBashPath = 'bash.exe';
-
   if (process.cwd() !== directory) {
     process.chdir(directory)
   }
@@ -43,7 +41,7 @@ function enforceEditorConfig (action, directory) {
   })()
 
   const command = process.platform === 'win32'
-    ? `"${gitBashPath}"`
+    ? 'bash.exe'
     : 'node'
 
   const args = process.platform === 'win32'
