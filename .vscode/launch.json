@@ -8,6 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
+      "console": "integratedTerminal",
       "program": "${workspaceRoot}/fleclint.js",
       "args": [
         "check"
